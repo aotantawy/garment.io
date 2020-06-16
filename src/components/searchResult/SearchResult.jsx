@@ -5,13 +5,13 @@ import Card from "./../card/Card";
 import Sort from "./../sort/Sort";
 import styles from "./styles/search-result.module.css";
 
-function activateSort(setShowResults) {
-  store.dispatch(sortByReviews(store.getState().statusReducer[1]));
+function activateSort(showResults, setShowResults) {
+  store.dispatch(sortByReviews(showResults));
   setShowResults(store.getState().sortReviewsReducer);
 }
 
 const SearchResult = () => {
-  const [showResults, setShowResults] = useState([]);
+  const [showResults, setShowResults] = useState();
 
   useEffect(() => {
     store.subscribe(() => {
@@ -27,7 +27,9 @@ const SearchResult = () => {
     <div>
       {showResults !== undefined && (
         <div>
-          <Sort activateSort={() => activateSort(setShowResults)} />
+          <Sort
+            activateSort={() => activateSort(showResults, setShowResults)}
+          />
           <div className={styles["result-container"]}>
             {showResults.map((result) => (
               <Card
