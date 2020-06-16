@@ -1,8 +1,11 @@
 import React from "react";
+import styles from "./styles/navbar.module.css";
 
 const SearchForm = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      className={`navbar navbar-expand-lg navbar-light bg-light ${styles["navbar-and-search"]}`}
+    >
       <span className="navbar-brand" href="#">
         Garment io
       </span>

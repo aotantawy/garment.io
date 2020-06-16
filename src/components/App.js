@@ -1,11 +1,11 @@
 import React from "react";
-import SearchForm from "./searchForm/SearchForm";
+import Navbar from "./navbar/Navbar";
 import SearchResult from "./searchResult/SearchResult";
 
 function App() {
   return (
     <div>
-      <SearchForm />
+      <Navbar />
       <SearchResult />
     </div>
   );
