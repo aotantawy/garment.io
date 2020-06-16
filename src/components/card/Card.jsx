@@ -7,9 +7,11 @@ const Card = (props) => {
       <img src={props.src} className="card-img-top" alt="..." />
       <div className="card-body">
         <h5 className="card-title">{props.businessName}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{props.NumberOfReviews}</h6>
-        <p class="card-text">{props.priceRange}</p>
-        <p class="card-text">{props.fullAddress}</p>
+        <p className="card-subtitle mb-2 text-muted">
+          Number of Reviews: {props.numberOfReviews}
+        </p>
+        <p className="card-text">{props.priceRange}</p>
+        <p className="card-text">{props.fullAddress}</p>
       </div>
     </div>
   );
