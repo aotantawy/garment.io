@@ -6,9 +6,8 @@ import Sort from "./../sort/Sort";
 import styles from "./styles/search-result.module.css";
 
 function activateSort(setShowResults) {
-  store.dispatch(sortByReviews(store.getState().statusReducer[2]));
+  store.dispatch(sortByReviews(store.getState().statusReducer[1]));
   setShowResults(store.getState().sortReviewsReducer);
-  console.log(store.getState().sortReviewsReducer);
 }
 
 const SearchResult = () => {
@@ -16,7 +15,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     store.subscribe(() => {
-      setShowResults(store.getState().statusReducer[2]);
+      setShowResults(store.getState().statusReducer[1]);
     });
   }, []);
 

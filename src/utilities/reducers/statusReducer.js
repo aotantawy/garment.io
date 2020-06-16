@@ -44,7 +44,6 @@ export default function statusReducer(state = [], action) {
       return [(state[0] = resetStatus("loading"))];
     case actionTypes.FETCH_DATA_SUCCESS:
       return [
-        ...state,
         (state[0] = resetStatus("loaded")),
         (state[1] = action.payload.data),
       ];
