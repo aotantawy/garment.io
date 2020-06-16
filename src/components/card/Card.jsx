@@ -10,8 +10,8 @@ const Card = (props) => {
         <p className="card-subtitle mb-2 text-muted">
           Number of Reviews: {props.numberOfReviews}
         </p>
-        <p className="card-text">{props.priceRange}</p>
-        <p className="card-text">{props.fullAddress}</p>
+        <p className="card-text">Price Range: {props.priceRange}</p>
+        <p className="card-text">Full Address: {props.fullAddress}</p>
       </div>
     </div>
   );

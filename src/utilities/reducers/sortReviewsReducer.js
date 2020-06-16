@@ -1,10 +1,10 @@
 import * as actionTypes from "../actionTypes";
-import { dummyResults } from "./../dummyData";
 
 function sortReviews(allBusinesses) {
   let allBusinessesCopy = allBusinesses;
   allBusinessesCopy.sort(
-    (first, second) => second.numberOfReviews - first.numberOfReviews
+    (first, second) =>
+      parseInt(second.review_count) - parseInt(first.review_count)
   );
   return allBusinessesCopy;
 }
@@ -20,10 +20,10 @@ function sortReviews(allBusinesses) {
  * ]
  */
 
-export default function sortReviewsReducer(state = dummyResults, action) {
+export default function sortReviewsReducer(state = [], action) {
   switch (action.type) {
     case actionTypes.SORT_REVIEWS:
-      return [...sortReviews(state)];
+      return [...sortReviews(action.payload.data)];
     default:
       return state;
   }

@@ -1,5 +1,4 @@
 import * as actionTypes from "../actionTypes";
-import { dummyData } from "./../dummyData";
 
 function resetStatus(status) {
   const newStatus = {
@@ -39,10 +38,10 @@ function resetStatus(status) {
  * ]
  */
 
-export default function statusReducer(state = dummyData, action) {
+export default function statusReducer(state = [], action) {
   switch (action.type) {
     case actionTypes.FETCH_DATA:
-      return [...state, (state[0] = resetStatus("loading"))];
+      return [(state[0] = resetStatus("loading"))];
     case actionTypes.FETCH_DATA_SUCCESS:
       return [
         ...state,
@@ -50,7 +49,7 @@ export default function statusReducer(state = dummyData, action) {
         (state[1] = action.payload.data),
       ];
     case actionTypes.FETCH_DATA_FAILURE:
-      return [...state, (state[0] = resetStatus("failed"))];
+      return [(state[0] = resetStatus("failed"))];
     default:
       return state;
   }

@@ -6,41 +6,45 @@ import Sort from "./../sort/Sort";
 import styles from "./styles/search-result.module.css";
 
 function activateSort(setShowResults) {
-  store.dispatch(sortByReviews());
+  store.dispatch(sortByReviews(store.getState().statusReducer[2]));
   setShowResults(store.getState().sortReviewsReducer);
+  console.log(store.getState().sortReviewsReducer);
 }
 
 const SearchResult = () => {
-  const initResult = [
-    {
-      src:
-        "https://www.agl-serveis.com/wp-content/uploads/2019/03/20150805204041-google-company-building-corporate.jpeg",
-      businessName: "Business #1",
-      numberOfReviews: 5,
-      priceRange: "20-30",
-      fullAddress: "building 22",
-    },
-  ];
-  const [showResults, setShowResults] = useState(initResult);
+  const [showResults, setShowResults] = useState([]);
 
   useEffect(() => {
-    setShowResults(store.getState().statusReducer[1]);
+    store.subscribe(() => {
+      setShowResults(store.getState().statusReducer[2]);
+    });
   }, []);
+
+  useEffect(() => {
+    setShowResults(showResults);
+  }, [showResults]);
+
   return (
     <div>
-      <Sort activateSort={() => activateSort(setShowResults)} />
-      <div className={styles["result-container"]}>
-        {showResults.map((result) => (
-          <Card
-            key={result.fullAddress}
-            src={result.src}
-            businessName={result.businessName}
-            numberOfReviews={result.numberOfReviews}
-            priceRange={result.priceRange}
-            fullAddress={result.fullAddress}
-          />
-        ))}
-      </div>
+      {showResults !== undefined && (
+        <div>
+          <Sort activateSort={() => activateSort(setShowResults)} />
+          <div className={styles["result-container"]}>
+            {showResults.map((result) => (
+              <Card
+                key={result.id}
+                src={result.image_url}
+                businessName={result.name}
+                numberOfReviews={result.review_count}
+                priceRange={result.price}
+                fullAddress={
+                  result.location.address1 + " , " + result.location.city
+                }
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
